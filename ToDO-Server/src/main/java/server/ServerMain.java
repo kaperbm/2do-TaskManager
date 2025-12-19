@@ -1,4 +1,4 @@
-package data.server;
+package server;
 
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -16,7 +16,7 @@ public class ServerMain {
                 Socket client = serverSocket.accept();
                 System.out.println("Client verbunden: " + client.getInetAddress());
 
-                ClientHandler handler = new ClientHandler(client);
+                ClientController handler = new ClientController(client);
                 handler.start();
             }
 

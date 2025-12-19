@@ -1,8 +1,8 @@
-package org;
+package data.manager;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import data.models.Task;
-import data.server.ServerConfig;
+import server.ServerConfig;
 
 import java.io.*;
 import java.util.ArrayList;

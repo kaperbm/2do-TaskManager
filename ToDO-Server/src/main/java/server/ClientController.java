@@ -1,12 +1,12 @@
-package data.server;
+package server;
+import data.manager.TaskManager;
+import data.manager.UserManager;
 import data.models.Task;
-import org.TaskManager;
-import data.UserManager;
 
 import java.io.*;
 import java.net.Socket;
 
-public class ClientHandler extends Thread {
+public class ClientController extends Thread {
 
     private final BufferedReader in;
     private final PrintWriter out;
@@ -14,12 +14,12 @@ public class ClientHandler extends Thread {
     private final UserManager userManager = new UserManager();
     private final TaskManager taskManager = new TaskManager();
 
-    public ClientHandler(Socket socket) throws IOException {
+    public ClientController(Socket socket) throws IOException {
         in  = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         out = new PrintWriter(socket.getOutputStream(), true);
     }
 
-    public ClientHandler(BufferedReader in, PrintWriter out) {
+    public ClientController(BufferedReader in, PrintWriter out) {
         this.in = in;
         this.out = out;
     }

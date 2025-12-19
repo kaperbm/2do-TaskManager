@@ -1,4 +1,4 @@
-package data.server;
+package server;
 
 public class ServerConfig {
     public static final int PORT = 5001;

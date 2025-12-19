@@ -1,23 +1,20 @@
-import data.server.ClientHandler;
+import server.ClientController;
 import org.junit.jupiter.api.Test;
 import java.io.*;
 import java.time.LocalDate;
-import java.util.Date;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class ClientHandlerTest {
+class ClientControllerTest {
 
     @Test
-    void testClientHandler() throws IOException, InterruptedException {
+    void testClientHandler() {
         // Given
-        String request = "ADD_TASK " + LocalDate.now().toString() + " " + "testtask";
+        String request = "ADD_TASK " + LocalDate.now() + " " + "testtask";
         BufferedReader in = new BufferedReader(new StringReader(request));
         StringWriter stringWriter = new StringWriter();
         PrintWriter out = new PrintWriter(stringWriter);
 
         // When
-        ClientHandler handler = new ClientHandler(in, out);
+        ClientController handler = new ClientController(in, out);
         handler.start();
 
         // Then

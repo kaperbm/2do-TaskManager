@@ -1,4 +1,4 @@
-package data;
+package data.manager;
 
 import data.models.User;
 
