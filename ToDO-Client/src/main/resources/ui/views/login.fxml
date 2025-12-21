@@ -1,42 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" spacing="16" styleClass="login-root" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controllers.LoginController">
 
 
-<VBox xmlns="http://javafx.com/javafx/23.0.5"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="ui.controllers.LoginController"
-      alignment="CENTER"
-      spacing="16"
-      styleClass="login-root"
-      stylesheets="@styles.css">
+    <Label styleClass="login-title" text="ToDo Manager" />
 
+    <Label styleClass="login-subtitle" text="Bitte anmelden" />
 
-    <Label text="ToDo Manager"
-           styleClass="login-title"/>
+    <VBox maxWidth="320.0" prefHeight="357.0" prefWidth="598.0" spacing="12" styleClass="login-card">
 
-    <Label text="Bitte anmelden"
-           styleClass="login-subtitle"/>
+        <TextField fx:id="emailField" promptText="E-Mail" styleClass="login-input" />
 
-    <VBox spacing="12"
-          maxWidth="320"
-          styleClass="login-card">
+        <PasswordField fx:id="passwordField" promptText="Passwort" styleClass="login-input" />
 
-        <TextField fx:id="emailField"
-                   promptText="E-Mail"
-                   styleClass="login-input"/>
-
-        <PasswordField fx:id="passwordField"
-                       promptText="Passwort"
-                       styleClass="login-input"/>
-
-        <Label fx:id="errorLabel"
-               styleClass="login-error"/>
-
-        <Button text="Anmelden"
-                onAction="#onLoginClick"
-                styleClass="login-button"/>
+        <Label fx:id="errorLabel" styleClass="login-error" />
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+         <children>
+      
+                          <Button onAction="#onLoginClick" styleClass="login-button" text="Anmelden" />
+      
+                          <Button onAction="#onCreateAccountClick" styleClass="login-button" text="Neuen Account erstellen" />
+         </children>
+      </HBox>
     </VBox>
 
 </VBox>

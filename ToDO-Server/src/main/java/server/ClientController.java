@@ -17,7 +17,7 @@ public class ClientController extends Thread {
         out = new PrintWriter(socket.getOutputStream(), true);
     }
 
-    public ClientController(BufferedReader in, PrintWriter out) {
+    public ClientController(BufferedReader in, PrintWriter out) throws IOException {
         this.in = in;
         this.out = out;
     }
@@ -79,6 +79,16 @@ public class ClientController extends Thread {
                 case "GET_TASKCOUNT": {
                     int count = taskManager.getTaskCount(parts[1]);
                     out.println(count);
+                    break;
+                }
+                case "CREATE_ACCOUNT":{
+                    if(parts.length < 4){
+                        out.println("ERR INVALID_PARAMS");
+                        break;
+                    }
+
+                    userManager.createNewUser(parts[1], parts[2], parts[3]);
+                    out.println("OK ACCOUNT_CREATED");
                     break;
                 }
                 case "GET_DATETASK":

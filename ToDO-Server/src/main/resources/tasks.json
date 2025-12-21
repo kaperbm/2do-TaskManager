@@ -1,72 +1,16 @@
 [ {
-  "name" : null,
-  "email" : "admin@s.com",
-  "password" : null,
+  "email" : "Test",
   "taskList" : [ {
-    "id" : "095a6159-8655-4dca-bfee-764f294a5f80",
-    "date" : "2025-12-20",
+    "id" : "eabfe239-7306-4a72-b2c8-4ce4e2243575",
+    "date" : "2025-12-21",
     "title" : "test",
     "description" : "",
     "completed" : false,
     "tbd" : false
   }, {
-    "id" : "a56e331c-b53d-45c8-b0d0-635a162325bb",
-    "date" : "2025-12-20",
-    "title" : "test",
-    "description" : "",
-    "completed" : false,
-    "tbd" : false
-  }, {
-    "id" : "340e45f5-945d-428d-a7c5-4c69c2653f37",
-    "date" : "2025-12-20",
+    "id" : "b5f6f31f-1ff7-4f1c-866d-43390bc62cc1",
+    "date" : "2025-12-21",
     "title" : "test2",
-    "description" : "",
-    "completed" : false,
-    "tbd" : false
-  }, {
-    "id" : "8a1c05bc-1e92-4a96-b412-c39011d43254",
-    "date" : "2025-12-20",
-    "title" : "test",
-    "description" : "",
-    "completed" : false,
-    "tbd" : false
-  }, {
-    "id" : "e01f2261-676a-44c3-84d2-d931e7b6da9d",
-    "date" : "2025-12-20",
-    "title" : "test",
-    "description" : "",
-    "completed" : false,
-    "tbd" : false
-  }, {
-    "id" : "36125f18-2ef6-49e5-bc18-4b75a6f95b5f",
-    "date" : "2025-12-20",
-    "title" : "4321",
-    "description" : "",
-    "completed" : false,
-    "tbd" : false
-  }, {
-    "id" : "da7ace5e-5eac-42a9-9a62-64e1ecdcd58a",
-    "date" : "2025-12-20",
-    "title" : "jojo",
-    "description" : "",
-    "completed" : false,
-    "tbd" : false
-  } ]
-}, {
-  "name" : null,
-  "email" : "admin2@s.com",
-  "password" : null,
-  "taskList" : [ {
-    "id" : "4f73b778-7551-4652-b6a9-496523b372ba",
-    "date" : "2025-12-20",
-    "title" : "test",
-    "description" : "",
-    "completed" : false,
-    "tbd" : false
-  }, {
-    "id" : "6189cc52-aa4a-4586-8d92-36a7e3e1a54a",
-    "date" : "2025-12-20",
-    "title" : "test",
     "description" : "",
     "completed" : false,
     "tbd" : false

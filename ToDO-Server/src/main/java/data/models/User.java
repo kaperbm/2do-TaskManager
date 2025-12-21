@@ -1,11 +1,24 @@
 package data.models;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class User {
+    public static class UserFileView {}
+    public static class TaskFileView {}
+
+    @JsonView({UserFileView.class})
     private String name;
+
+    @JsonView({UserFileView.class, TaskFileView.class})
     private String email;
+
+    @JsonView(UserFileView.class)
     private String password;
+
+    @JsonView(TaskFileView.class)
     private List<Task> taskList;
 
     public void setEmail(String email) {

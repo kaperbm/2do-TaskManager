@@ -8,7 +8,7 @@ import java.time.LocalDate;
 class ClientControllerTest {
 
     @Test
-    void testClientHandler() {
+    void testClientHandler() throws IOException {
         String request = "ADD_TASK " + LocalDate.now() + " " + "testtask";
         BufferedReader in = new BufferedReader(new StringReader(request));
         StringWriter stringWriter = new StringWriter();

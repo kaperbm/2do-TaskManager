@@ -117,7 +117,7 @@ public class TaskManager {
             userList.add(newUser);
         }
 
-        String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(userList);
+        String json = mapper.writerWithView(User.TaskFileView.class).withDefaultPrettyPrinter().writeValueAsString(userList);
 
         try (FileWriter fw = new FileWriter(file)) {
             fw.write(json);
