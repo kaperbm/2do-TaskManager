@@ -18,10 +18,11 @@ public class TaskManager {
 
     private List<User> userWithTasks = new ArrayList<>();
     private final ObjectMapper mapper = new ObjectMapper();
+    public record TaskCounts(int open, int tbd, int done) {}
 
     public TaskManager(String email) {
         try{
-            load(email);
+            loadUserTask(email);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -33,41 +34,69 @@ public class TaskManager {
 
     }
 
-    public int getTaskCount(String email) throws IOException {
-        return load(email).size();
+    public String getTaskCounts(String email) throws IOException {
+        List<Task> tasks = loadUserTask(email);
+        int open = 0;
+        int tbd = 0;
+        int done = 0;
+
+        for (Task t : tasks) {
+            if(t.getCompleted()){
+                done++;
+            }
+            else if (t.getTbd()){
+                tbd++;
+            }
+            else{
+                open++;
+            }
+        }
+
+        return mapper.writeValueAsString(new TaskCounts(open, tbd, done));
     }
 
-    public List<Task> getTasksWithDate() {
-        List<Task> result = new ArrayList<>();
-        for( User u : userWithTasks) {
-            for (Task t : u.getTaskList()) {
-                if (t.getDate() != null) {
-                    result.add(t);
+    public String getUserTasks(String email) throws IOException {
+
+        return mapper.writerWithView(User.TaskFileView.class).writeValueAsString(loadUserTask(email));
+    }
+
+    public String getUserTasks(String email, int i) throws IOException {
+
+        List<Task> userWithTasks = new ArrayList<>();
+        if(i == 1){
+            for(Task t : loadUserTask(email)){
+                if(t.getCompleted() == false && t.getTbd() == false){
+                    userWithTasks.add(t);
                 }
             }
         }
-        return result;
-    }
-
-    public String getAllTasksString() {
-        StringBuilder sb = new StringBuilder();
-        for (User u : userWithTasks) {
-            String date = "";
-            for( Task t : u.getTaskList()) {
-                if (t.getDescription() != null) {
-                    date = t.getDescription();
+        if(i == 2){
+            for(Task t : loadUserTask(email)){
+                if(t.getTbd() == true){
+                    userWithTasks.add(t);
                 }
-                sb.append(t.getId()).append(";")
-                        .append(t.getDate()).append(";")
-                        .append(t.getTitle()).append(";")
-                        .append(date)
-                        .append("\n");
             }
+        }
+        if(i == 3){
+            for(Task t : loadUserTask(email)){
+                if(t.getCompleted() == true){
+                    userWithTasks.add(t);
+                }
             }
-        return sb.toString();
+        }
+        return mapper.writerWithView(User.TaskFileView.class).writeValueAsString(userWithTasks);
     }
 
-    private List<Task> load(String email) throws IOException {
+    public String saveTask(String email, String json) throws IOException {
+
+        List<Task> tasks = Arrays.asList(mapper.readValue(json, Task[].class));
+        saveTasks(email, tasks);
+
+        return "OK SAVE_TASKS";
+    }
+
+
+    private List<Task> loadUserTask(String email) throws IOException {
         File file = new File(ServerConfig.TASK_FILE);
 
         if (!file.exists() || file.length() == 0) {
@@ -125,5 +154,44 @@ public class TaskManager {
         }
 
         System.out.println("File written: " + file.length() + " bytes");
+    }
+
+    private void saveTasks(String email, List<Task> tasks) throws IOException {
+        File file = new File(ServerConfig.TASK_FILE);
+        file.getParentFile().mkdirs();
+
+        List<User> userList = new ArrayList<>();
+
+        if (file.exists() && file.length() > 0) {
+            User[] userArray = mapper.readValue(file, User[].class);
+            userList = new ArrayList<>(Arrays.asList(userArray));
+        }
+
+        boolean userFound = false;
+        for (User u : userList) {
+            if (u.getEmail().equals(email)) {
+                u.setTaskList(tasks);  // ← Überschreibt komplette Liste!
+                userFound = true;
+                break;
+            }
+        }
+
+        if (!userFound) {
+            User newUser = new User();
+            newUser.setEmail(email);
+            newUser.setTaskList(tasks);
+            userList.add(newUser);
+        }
+
+        String json = mapper.writerWithView(User.TaskFileView.class)
+                .withDefaultPrettyPrinter()
+                .writeValueAsString(userList);
+
+        try (FileWriter fw = new FileWriter(file)) {
+            fw.write(json);
+            fw.flush();
+        }
+
+        System.out.println("Tasks saved for " + email + ": " + tasks.size() + " tasks");
     }
 }

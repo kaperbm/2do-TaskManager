@@ -9,6 +9,9 @@ public class User {
     public static class UserFileView {}
     public static class TaskFileView {}
 
+    @JsonView({UserFileView.class, TaskFileView.class})
+    private String id;
+
     @JsonView({UserFileView.class})
     private String name;
 
@@ -28,6 +31,7 @@ public class User {
     public User(){}
 
     public User(String name, String email, String password) {
+        this.id = java.util.UUID.randomUUID().toString();
         this.name = name;
         this.email = email;
         this.password = password;

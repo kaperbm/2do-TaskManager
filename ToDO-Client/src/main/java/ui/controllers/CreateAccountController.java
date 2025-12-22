@@ -35,22 +35,16 @@ public class CreateAccountController {
             }
 
             String response = Session.client.send("CREATE_ACCOUNT " + name + " " + email + " " + pass);
-            System.out.println("Server Antwort: " + response);
 
-//            if (response.startsWith("OK")) {
-//                Session.loggedInUserEmail = email;
-//
-//                Stage stage = (Stage) emailField.getScene().getWindow();
-//                SceneManager.switchTo(stage, "/ui/views/dashboard.fxml");
-//
-//            }else {
-//                errorLabel.setText(response);
-//            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            errorLabel.setText("Server nicht erreichbar");
-        }
+            if(response.startsWith("OK")) {
+                errorLabel.setText("Account erfolgreich erstellt!");
+            } else if (response.startsWith("ERR"))
+                errorLabel.setText("Account existiert bereits!"); {
+            }
+            } catch (Exception e) {
+                e.printStackTrace();
+                errorLabel.setText("Server nicht erreichbar");
+            }
 
     }
 

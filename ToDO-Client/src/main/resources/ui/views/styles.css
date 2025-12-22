@@ -121,7 +121,7 @@
 .fab-button {
     -fx-background-color: #111827;   /* SCHWARZ */
     -fx-text-fill: white;
-    -fx-font-size: 26px;
+    -fx-font-size: 20px;
     -fx-font-weight: bold;
     -fx-background-radius: 30;
     -fx-cursor: hand;

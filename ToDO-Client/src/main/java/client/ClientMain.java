@@ -12,7 +12,7 @@ public class ClientMain extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/views/login.fxml"));
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
-        stage.setWidth(1400);
+        stage.setWidth(1200);
         stage.setHeight(900);
         stage.centerOnScreen();
         stage.setTitle("Task Manager");
