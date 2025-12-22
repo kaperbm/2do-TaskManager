@@ -1,7 +1,6 @@
 package server;
 import data.manager.TaskManager;
 import data.manager.UserManager;
-import data.models.Task;
 import java.io.*;
 import java.net.Socket;
 
@@ -44,63 +43,57 @@ public class ClientController extends Thread {
             TaskManager taskManager = new TaskManager(parts[1]);
 
             switch (parts[0]) {
-                case "LOGIN":
+                case "LOGIN": {
                     String email = parts[1];
-                    String pass  = parts[2];
+                    String pass = parts[2];
                     if (userManager.checkLogin(email, pass)) {
                         out.println("OK LOGIN");
                     } else {
                         out.println("ERR LOGIN");
                     }
                     break;
-
-                case "GET_TASKS":
-                    out.println(taskManager.getAllTasksString());
-                    break;
-
-                case "ADD_TASK":
-                    taskManager.addTask(parts[1], parts[2], parts[3]);
-                    out.println("OK ADD");
-                    break;
-                case "ADD_DATETASK": {
-                    if (parts.length < 3) {
-                        out.println("ERR INVALID_PARAMS");
-                        break;
-                    }
-
-                    String date = parts[1];
-                    String title = parts[2];
-                    String description = parts[3];
-
-                    taskManager.addTask(title, description, date);
-                    out.println("OK EVENT_ADDED");
-                    break;
                 }
-                case "GET_TASKCOUNT": {
-                    int count = taskManager.getTaskCount(parts[1]);
-                    out.println(count);
-                    break;
-                }
+
                 case "CREATE_ACCOUNT":{
                     if(parts.length < 4){
                         out.println("ERR INVALID_PARAMS");
                         break;
                     }
 
-                    userManager.createNewUser(parts[1], parts[2], parts[3]);
-                    out.println("OK ACCOUNT_CREATED");
+                    if(userManager.createNewUser(parts[1], parts[2], parts[3]) == true){
+                        out.println("OK ACCOUNT CREATED");
+                    } else {
+                        out.println("ERR ACCOUNT EXISTS");
+                    }
                     break;
                 }
-                case "GET_DATETASK":
 
-                    StringBuilder sb = new StringBuilder();
-                    for (Task t : taskManager.getTasksWithDate()) {
-                        sb.append(t.getDescription()).append(";").append(t.getDate()).append("\n");
-                    }
-                    out.println(sb);
+                case "ADD_TASK":{
+
+                    taskManager.addTask(parts[1], parts[2], parts[3]);
+                    out.println("OK ADD");
                     break;
-                default:
-                    out.println("ERR UNKNOWN_COMMAND");
+                }
+
+                case "GET_TASKS":{
+                    if(parts.length < 3){
+                        out.println(taskManager.getUserTasks(parts[1]));
+                        break;
+                    }
+                    out.println(taskManager.getUserTasks(parts[1], Integer.parseInt(parts[2])));
+                    break;
+                }
+
+                case "GET_TASKCOUNT": {
+                    out.println(taskManager.getTaskCounts(parts[1]));
+                    break;
+                }
+
+                case "SAVE_TASKS": {
+                    taskManager.saveTask(parts[1], parts[2]);
+                    out.println("OK");
+                    break;
+                }
             }
 
         } catch (Exception e) {

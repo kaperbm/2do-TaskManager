@@ -1,18 +1,33 @@
 [ {
-  "email" : "Test",
+  "id" : null,
+  "email" : "test",
   "taskList" : [ {
-    "id" : "eabfe239-7306-4a72-b2c8-4ce4e2243575",
-    "date" : "2025-12-21",
-    "title" : "test",
-    "description" : "",
+    "id" : "7da4e473-c14e-40b8-80da-022bcbe67feb",
+    "date" : "2025-12-22",
+    "title" : "Haushalt",
+    "description" : "Staubsaugen,Wäsche-waschen,Kochen",
+    "completed" : false,
+    "tbd" : true
+  }, {
+    "id" : "ddd5b07d-b1c0-412e-a6f2-96649c0d65f2",
+    "date" : "2025-12-22",
+    "title" : "Lernen",
+    "description" : "Mathe,ODE,IoT",
     "completed" : false,
     "tbd" : false
   }, {
-    "id" : "b5f6f31f-1ff7-4f1c-866d-43390bc62cc1",
-    "date" : "2025-12-21",
-    "title" : "test2",
-    "description" : "",
+    "id" : "22520772-0576-495f-a1ec-5521e9eba7c5",
+    "date" : "2025-12-22",
+    "title" : "Trainieren",
+    "description" : "MO:Push,MI:Pull,SA:Beine",
     "completed" : false,
+    "tbd" : false
+  }, {
+    "id" : "d8e35449-de68-456b-94cb-952c70905515",
+    "date" : "2025-12-22",
+    "title" : "Geschenke-kaufen",
+    "description" : "MAMA:Blumen,Papa:Wein",
+    "completed" : true,
     "tbd" : false
   } ]
 } ]

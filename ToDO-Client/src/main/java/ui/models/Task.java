@@ -1,4 +1,4 @@
-package data.models;
+package ui.models;
 import java.util.UUID;
 
 public class Task {
@@ -11,8 +11,8 @@ public class Task {
 
     public Task() {}
 
-    public Task(String date, String title) {
-        this.id = UUID.randomUUID().toString();
+    public Task(String id, String date, String title, String description, boolean completed, boolean tbd) {
+        this.id = id;
         this.date = date;
         this.title = title;
         this.description = "";
@@ -33,8 +33,8 @@ public class Task {
     public String getDate() { return date; }
     public String getTitle() { return title; }
     public String getDescription() { return description; }
-    public boolean getCompleted() { return completed; }
-    public boolean getTbd() { return tbd; }
+    public boolean isCompleted() { return completed; }
+    public boolean isTbd() { return tbd; }
 
     public void setId(String id) { this.id = id; }
     public void setDate(String date) { this.date = date; }

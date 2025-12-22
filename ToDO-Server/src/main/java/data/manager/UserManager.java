@@ -36,7 +36,7 @@ public class UserManager {
         users = new ArrayList<>(Arrays.asList(userArray));
     }
 
-    public String createNewUser(String name, String email, String password) throws IOException {
+    public boolean createNewUser(String name, String email, String password) throws IOException {
         load();
         File file = new File(ServerConfig.USER_FILE);
         file.getParentFile().mkdirs();
@@ -49,18 +49,18 @@ public class UserManager {
                 fw.write(json);
                 fw.flush();
             }
-            return "OK NEWUSER";
+            return true;
         }
 
         for (User u : users) {
             if (u.getEmail().equals(email)) {
-                return "THIS USER ALREADY EXISTS";
+                return false;
             }
         }
 
         users.add(new User(name, email, password));
 
-        String json = mapper.writerWithView(User.TaskFileView.class).withDefaultPrettyPrinter().writeValueAsString(users);
+        String json = mapper.writerWithView(User.UserFileView.class).withDefaultPrettyPrinter().writeValueAsString(users);
 
         try (FileWriter fw = new FileWriter(file)) {
             fw.write(json);
@@ -69,6 +69,6 @@ public class UserManager {
 
         System.out.println("File written: " + file.length() + " bytes");
 
-        return "OK NEWUSER";
+        return true;
     }
 }

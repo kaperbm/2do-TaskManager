@@ -22,9 +22,9 @@ public class LoginController {
     @FXML
     private Label errorLabel;
 
-    private static final boolean DEBUG_MODE = false;
-    private static final String DEBUG_EMAIL = "admin@s.com";
-    private static final String DEBUG_PASSWORD = "1234";
+    private static final boolean DEBUG_MODE = true;
+    private static final String DEBUG_EMAIL = "test";
+    private static final String DEBUG_PASSWORD = "test";
 
     @FXML
     private void initialize() {
@@ -46,7 +46,6 @@ public class LoginController {
             }
 
             String response = Session.client.send("LOGIN " + email + " " + pass);
-            System.out.println("Server Antwort: " + response);
 
             if (response.startsWith("OK")) {
                 Session.loggedInUserEmail = email;
