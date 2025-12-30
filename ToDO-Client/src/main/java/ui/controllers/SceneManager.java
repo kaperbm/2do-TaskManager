@@ -32,6 +32,12 @@ public class SceneManager {
             stage.setHeight(height);
             stage.setFullScreen(wasFullScreen);
 
+
+            scene.getRoot().getStyleClass().remove("dark");
+            if (client.Session.darkMode) {
+                scene.getRoot().getStyleClass().add("dark");
+            }
+
         } catch (Exception e) {
             System.err.println("SceneManager Fehler beim Laden von: " + fxmlPath);
             e.printStackTrace();

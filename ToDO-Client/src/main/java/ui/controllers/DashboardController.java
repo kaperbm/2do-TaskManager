@@ -78,6 +78,11 @@ public class DashboardController {
         SceneManager.switchTo(stage, "/ui/views/calendar.fxml");
     }
     @FXML
+    private void openSettings() {
+        Stage stage = (Stage) userAvatarLabel.getScene().getWindow();
+        SceneManager.switchTo(stage, "/ui/views/settings.fxml");
+    }
+    @FXML
     public void onAddEventClick() {
         try {
             TextInputDialog dialog = new TextInputDialog();
@@ -159,16 +164,14 @@ public class DashboardController {
         HBox row = new HBox(15);
         row.setAlignment(Pos.CENTER_LEFT);
         row.setPadding(new Insets(10, 10, 10, 10));
-        row.setStyle("-fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0; -fx-background-color: white;");
         row.setMaxWidth(Double.MAX_VALUE);
 
         Label nameLabel = new Label(task.getTitle());
-        nameLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
+        nameLabel.setStyle("-fx-font-weight: normal; -fx-font-size: 14px;");
         nameLabel.setMinWidth(150);
         nameLabel.setMaxWidth(150);
 
         TextField descField = new TextField(task.getDescription());
-        descField.setStyle("-fx-text-fill: #666666;");
         descField.setMinWidth(150);
         descField.setMaxWidth(Double.MAX_VALUE);
         HBox.setHgrow(descField, Priority.ALWAYS);

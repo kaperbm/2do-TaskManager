@@ -30,7 +30,7 @@
             <VBox spacing="4">
                 <Button styleClass="nav-button" text="  🏠  Übersicht" />
                 <Button onAction="#openCalendar" styleClass="nav-button" text="  📅  Kalender" />
-                <Button styleClass="nav-button" text="  ⚙️  Einstellungen" />
+                <Button onAction="#openSettings" styleClass="nav-button" text="  ⚙️  Einstellungen" />
             </VBox>
 
             <VBox VBox.vgrow="ALWAYS" />
@@ -41,7 +41,7 @@
 
 
     <center>
-        <StackPane>
+        <StackPane styleClass="center-root">
 
 
             <VBox spacing="24" styleClass="page-root">
@@ -100,9 +100,9 @@
                               <Label alignment="CENTER" maxWidth="60" minWidth="60" styleClass="big-card-empty-text" text="Löschen" />
                           </children>
                       </HBox>
-                          <ScrollPane fx:id="taskScrollPane" fitToWidth="true" VBox.vgrow="ALWAYS">
+                          <ScrollPane fx:id="taskScrollPane" fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="task-scroll">
                               <content>
-                                  <VBox fx:id="taskDisplayVBox" spacing="5">
+                                  <VBox fx:id="taskDisplayVBox" spacing="5" styleClass="task-scroll">
 
                             </VBox>
                               </content>

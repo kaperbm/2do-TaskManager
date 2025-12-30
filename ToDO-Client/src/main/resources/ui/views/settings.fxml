@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ui.controllers.SettingsController">
+
+
+    <left>
+        <VBox spacing="24" prefWidth="230" styleClass="sidebar">
+
+            <VBox spacing="12" styleClass="user-box">
+                <HBox spacing="10">
+                    <Label fx:id="userAvatarLabel" text="AD" styleClass="user-avatar"/>
+                    <VBox spacing="2">
+                        <Label fx:id="userNameLabel" text="Admin User" styleClass="user-name"/>
+                        <Label text="ADMIN" styleClass="user-role"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <Label text="NAVIGATION" styleClass="nav-title"/>
+
+            <VBox spacing="4">
+                <Button text="  🏠  Übersicht" styleClass="nav-button" onAction="#openDashboard"/>
+                <Button text="  📅  Kalender" styleClass="nav-button" onAction="#openCalendar"/>
+                <Button text="  ⚙️  Einstellungen" styleClass="nav-button"/>
+            </VBox>
+
+            <VBox VBox.vgrow="ALWAYS"/>
+
+            <Button text="  ⏏  Abmelden"
+                    styleClass="logout-button"
+                    onAction="#onLogoutClick"/>
+
+        </VBox>
+    </left>
+
+
+    <center>
+        <VBox spacing="18" styleClass="page-root">
+
+            <VBox spacing="4">
+                <Label text="Einstellungen" styleClass="page-title"/>
+                <Label text="Passe das Aussehen an" styleClass="page-subtitle"/>
+            </VBox>
+
+            <VBox spacing="12" styleClass="big-card">
+                <Label text="Darstellung" styleClass="big-card-title"/>
+
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <Label text="Dark Mode" styleClass="stat-title"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <CheckBox fx:id="darkModeCheckBox" onAction="#onToggleDarkMode"/>
+                </HBox>
+            </VBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>
