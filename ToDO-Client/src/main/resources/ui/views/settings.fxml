@@ -57,6 +57,21 @@
                 </HBox>
             </VBox>
 
+            <VBox spacing="12" styleClass="big-card">
+                <Label text="Passwort ändern" styleClass="big-card-title"/>
+
+                <VBox spacing="10">
+                    <PasswordField fx:id="oldPasswordField" promptText="Altes Passwort" />
+                    <PasswordField fx:id="newPasswordField" promptText="Neues Passwort" />
+
+                    <Label fx:id="passwordStatusLabel" text="" styleClass="page-subtitle"/>
+
+                    <Button text="Passwort ändern"
+                            styleClass="primary-button"
+                            onAction="#onChangePasswordClick"/>
+                </VBox>
+            </VBox>
+
         </VBox>
     </center>
 

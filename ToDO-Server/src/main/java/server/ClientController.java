@@ -94,6 +94,20 @@ public class ClientController extends Thread {
                     out.println("OK");
                     break;
                 }
+                case "CHANGE_PASSWORD": {
+                    if (parts.length < 4) {
+                        out.println("ERR INVALID_PARAMS");
+                        break;
+                    }
+
+                    String email = parts[1];
+                    String oldPw = parts[2];
+                    String newPw = parts[3];
+
+                    boolean ok = userManager.changePassword(email, oldPw, newPw);
+                    out.println(ok ? "OK PASSWORD_CHANGED" : "ERR PASSWORD_CHANGE");
+                    break;
+                }
             }
 
         } catch (Exception e) {

@@ -99,7 +99,6 @@
     -fx-font-weight: bold;
 }
 
-/* ===== BIG CARD ===== */
 .big-card {
     -fx-background-color: white;
     -fx-padding: 24;
@@ -119,7 +118,7 @@
 
 
 .fab-button {
-    -fx-background-color: #111827;   /* SCHWARZ */
+    -fx-background-color: #111827;
     -fx-text-fill: white;
     -fx-font-size: 20px;
     -fx-font-weight: bold;
@@ -298,4 +297,18 @@
 
 .big-card-empty-text {
     -fx-font-weight: bold;
+}
+
+
+.primary-button {
+    -fx-background-color: #111827;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 10 14;
+}
+
+.dark .primary-button {
+    -fx-background-color: #0b1220;
+    -fx-text-fill: white;
 }

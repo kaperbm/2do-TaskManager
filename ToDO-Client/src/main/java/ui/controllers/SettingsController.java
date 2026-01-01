@@ -4,6 +4,7 @@ import client.Session;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
 import ui.SceneManager;
 
@@ -11,7 +12,6 @@ public class SettingsController {
 
     @FXML private Label userAvatarLabel;
     @FXML private Label userNameLabel;
-
     @FXML private CheckBox darkModeCheckBox;
 
     @FXML
@@ -26,10 +26,47 @@ public class SettingsController {
     }
 
     @FXML
+    private PasswordField oldPasswordField;
+
+    @FXML
+    private PasswordField newPasswordField;
+
+    @FXML
+    private Label passwordStatusLabel;
+
+    @FXML
+    private void onChangePasswordClick() {
+        try {
+            String email = Session.loggedInUserEmail;
+            String oldPw = oldPasswordField.getText();
+            String newPw = newPasswordField.getText();
+
+            if (oldPw.isBlank() || newPw.isBlank()) {
+                passwordStatusLabel.setText("Bitte beide Felder ausfüllen.");
+                return;
+            }
+
+            String resp = Session.client.send("CHANGE_PASSWORD " + email + " " + oldPw + " " + newPw);
+
+            if (resp.startsWith("OK")) {
+                passwordStatusLabel.setText("Passwort geändert ✅");
+                oldPasswordField.clear();
+                newPasswordField.clear();
+            } else {
+                passwordStatusLabel.setText("Altes Passwort falsch ❌");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            passwordStatusLabel.setText("Serverfehler ❌");
+        }
+    }
+
+
+
+    @FXML
     private void onToggleDarkMode() {
         Session.darkMode = darkModeCheckBox.isSelected();
-
-        // sofort anwenden auf aktueller Scene
         Stage stage = (Stage) darkModeCheckBox.getScene().getWindow();
         stage.getScene().getRoot().getStyleClass().remove("dark");
         if (Session.darkMode) {

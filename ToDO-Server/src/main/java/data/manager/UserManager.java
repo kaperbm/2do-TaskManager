@@ -71,4 +71,33 @@ public class UserManager {
 
         return true;
     }
+
+    public boolean changePassword(String email, String oldPassword, String newPassword) throws IOException {
+        load();
+
+        for (User u : users) {
+            if (u.getEmail().equals(email)) {
+
+                if (!u.getPassword().equals(oldPassword)) {
+                    return false;
+                }
+
+                u.setPassword(newPassword);
+
+                File file = new File(ServerConfig.USER_FILE);
+                String json = mapper
+                        .writerWithView(User.UserFileView.class)
+                        .withDefaultPrettyPrinter()
+                        .writeValueAsString(users);
+
+                try (FileWriter fw = new FileWriter(file)) {
+                    fw.write(json);
+                    fw.flush();
+                }
+
+                return true;
+            }
+        }
+        return false;
+    }
 }
