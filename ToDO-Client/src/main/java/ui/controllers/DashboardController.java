@@ -251,6 +251,11 @@ public class DashboardController {
         dateLabel.setMinWidth(100);
         dateLabel.setMaxWidth(100);
 
+        Label dateLabel2 = new Label(task.getDateTbd());
+        dateLabel2.setStyle("-fx-text-fill: #999999;");
+        dateLabel2.setMinWidth(100);
+        dateLabel2.setMaxWidth(100);
+
         HBox deleteBox = new HBox();
         deleteBox.setAlignment(Pos.CENTER);
         deleteBox.setMinWidth(60);
@@ -271,6 +276,7 @@ public class DashboardController {
                 tbdBox,
                 doneBox,
                 dateLabel,
+                dateLabel2,
                 deleteBox
         );
 

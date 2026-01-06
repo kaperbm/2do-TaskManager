@@ -97,6 +97,9 @@
 
                               <Label maxWidth="100" minWidth="100" styleClass="big-card-empty-text" text="Erstellt am" />
 
+
+                              <Label maxWidth="100" minWidth="100" styleClass="big-card-empty-text" text="Fällig bis" />
+
                               <Label alignment="CENTER" maxWidth="60" minWidth="60" styleClass="big-card-empty-text" text="Löschen" />
                           </children>
                       </HBox>
