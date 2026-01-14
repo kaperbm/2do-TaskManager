@@ -40,6 +40,14 @@ public class DashboardController {
 
     @FXML private VBox taskDisplayVBox;
 
+    @FXML private Label titleHeaderLabel;
+    @FXML private Label deleteHeaderLabel;
+
+    private boolean isAlphabeticalAscending = true;
+    private boolean isDateAscending = true;
+    private boolean isDateTbdAscending = true;
+
+
     private List<Task> currentTaskList;
     private List<Task> taskList;
     private List<Task> tasksToDelete = new ArrayList<>();
@@ -374,6 +382,123 @@ public class DashboardController {
         if (tasksInfoLabel.getText().contains("Abgeschlossene")) {
             onDoneClicked();
         }
+    }
+
+    @FXML
+    public void onAlphabeticalClicked() throws IOException {
+        if (currentTaskList != null && !currentTaskList.isEmpty()) {
+            if (isAlphabeticalAscending) {
+                currentTaskList.sort((task1, task2) ->
+                        task1.getTitle().compareToIgnoreCase(task2.getTitle())
+                );
+            } else {
+                currentTaskList.sort((task1, task2) -> {
+                    String title1 = task1.getTitle().toLowerCase();
+                    String title2 = task2.getTitle().toLowerCase();
+
+                    if (title1.isEmpty() || title2.isEmpty()) {
+                        return title1.compareTo(title2);
+                    }
+                    char first1 = title1.charAt(0);
+                    char first2 = title2.charAt(0);
+
+                    if (first1 != first2) {
+                        return Character.compare(first2, first1);
+                    } else {
+                        return title1.compareTo(title2);
+                    }
+                });
+            }
+
+            isAlphabeticalAscending = !isAlphabeticalAscending;
+
+            taskDisplayVBox.getChildren().clear();
+            for (Task task : currentTaskList) {
+                HBox taskRow = createTaskRow(task);
+                taskDisplayVBox.getChildren().add(taskRow);
+            }
+
+            String currentLabel = tasksInfoLabel.getText();
+            String sortOrder = isAlphabeticalAscending ? "Z-A" : "A-Z";
+            currentLabel = currentLabel.replaceAll(" \\(alphabetisch sortiert.*\\)", "");
+            tasksInfoLabel.setText(currentLabel + " (alphabetisch sortiert " + sortOrder + ")");
+        }
+    }
+
+    @FXML
+    public void onDateClicked() throws IOException {
+        if (currentTaskList != null && !currentTaskList.isEmpty()) {
+            if (isDateAscending) {
+                currentTaskList.sort((task1, task2) ->
+                        LocalDate.parse(task1.getDate()).compareTo(LocalDate.parse(task2.getDate()))
+                );
+            } else {
+                currentTaskList.sort((task1, task2) ->
+                        LocalDate.parse(task2.getDate()).compareTo(LocalDate.parse(task1.getDate()))
+                );
+            }
+
+            isDateAscending = !isDateAscending;
+            taskDisplayVBox.getChildren().clear();
+            for (Task task : currentTaskList) {
+                HBox taskRow = createTaskRow(task);
+                taskDisplayVBox.getChildren().add(taskRow);
+            }
+
+            String currentLabel = tasksInfoLabel.getText();
+            String sortOrder = isDateAscending ? "neueste zuerst" : "älteste zuerst";
+            currentLabel = currentLabel.replaceAll(" \\(.*sortiert.*\\)", "");
+            tasksInfoLabel.setText(currentLabel + " (nach Erstelldatum sortiert: " + sortOrder + ")");
+        }
+    }
+
+    @FXML
+    public void onDateTbdClicked() throws IOException {
+        if (currentTaskList != null && !currentTaskList.isEmpty()) {
+            if (isDateTbdAscending) {
+                currentTaskList.sort((task1, task2) -> {
+                    String date1 = task1.getDateTbd();
+                    String date2 = task2.getDateTbd();
+
+                    if (date1 == null && date2 == null) return 0;
+                    if (date1 == null) return 1;
+                    if (date2 == null) return -1;
+
+                    return LocalDate.parse(date1).compareTo(LocalDate.parse(date2));
+                });
+            } else {
+                currentTaskList.sort((task1, task2) -> {
+                    String date1 = task1.getDateTbd();
+                    String date2 = task2.getDateTbd();
+
+                    if (date1 == null && date2 == null) return 0;
+                    if (date1 == null) return 1;
+                    if (date2 == null) return -1;
+
+                    return LocalDate.parse(date2).compareTo(LocalDate.parse(date1));
+                });
+            }
+
+            isDateTbdAscending = !isDateTbdAscending;
+            taskDisplayVBox.getChildren().clear();
+            for (Task task : currentTaskList) {
+                HBox taskRow = createTaskRow(task);
+                taskDisplayVBox.getChildren().add(taskRow);
+            }
+
+            String currentLabel = tasksInfoLabel.getText();
+            String sortOrder = isDateTbdAscending ? "späteste zuerst" : "früheste zuerst";
+            currentLabel = currentLabel.replaceAll(" \\(.*sortiert.*\\)", "");
+            tasksInfoLabel.setText(currentLabel + " (nach Fälligkeit sortiert: " + sortOrder + ")");
+        }
+    }
+
+    @FXML
+    public void onDeleteHeaderClicked() throws IOException {
+        isAlphabeticalAscending = true;
+        isDateAscending = true;
+        isDateTbdAscending = true;
+        onOpenClicked();
     }
 
 }

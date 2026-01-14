@@ -87,7 +87,11 @@
                               <Insets bottom="10" left="10" right="10" top="10" />
                           </padding>
                           <children>
-                              <Label maxWidth="150" minWidth="150" styleClass="big-card-empty-text" text="Titel" />
+                              <Label fx:id="titleHeaderLabel" onMouseClicked="#onAlphabeticalClicked" maxWidth="150" minWidth="150" styleClass="big-card-empty-text" text="Titel">
+                                  <cursor>
+                                      <Cursor fx:constant="HAND" />
+                                  </cursor>
+                              </Label>
 
                               <Label maxWidth="Infinity" minWidth="150" styleClass="big-card-empty-text" text="Beschreibung" HBox.hgrow="ALWAYS" />
 
@@ -95,12 +99,24 @@
 
                               <Label alignment="CENTER" maxWidth="80" minWidth="80" styleClass="big-card-empty-text" text="Erledigt" />
 
-                              <Label maxWidth="100" minWidth="100" styleClass="big-card-empty-text" text="Erstellt am" />
+                              <Label fx:id="dateHeaderLabel" onMouseClicked="#onDateClicked" maxWidth="100" minWidth="100" styleClass="big-card-empty-text" text="Erstellt am">
+                                  <cursor>
+                                      <Cursor fx:constant="HAND" />
+                                  </cursor>
+                              </Label>
 
 
-                              <Label maxWidth="100" minWidth="100" styleClass="big-card-empty-text" text="Fällig bis" />
+                              <Label fx:id="dateTbdHeaderLabel" onMouseClicked="#onDateTbdClicked" maxWidth="100" minWidth="100" styleClass="big-card-empty-text" text="Fällig bis">
+                                  <cursor>
+                                      <Cursor fx:constant="HAND" />
+                                  </cursor>
+                              </Label>
 
-                              <Label alignment="CENTER" maxWidth="60" minWidth="60" styleClass="big-card-empty-text" text="Löschen" />
+                              <Label fx:id="deleteHeaderLabel" onMouseClicked="#onDeleteHeaderClicked" alignment="CENTER" maxWidth="60" minWidth="60" styleClass="big-card-empty-text" text="Löschen">
+                                  <cursor>
+                                      <Cursor fx:constant="HAND" />
+                                  </cursor>
+                              </Label>
                           </children>
                       </HBox>
                           <ScrollPane fx:id="taskScrollPane" fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="task-scroll">
