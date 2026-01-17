@@ -1,11 +1,6 @@
 package ui.controllers;
 
-/**
- * @author Kacper Bohaczyk
- * @version 14-01-2026
- *
- * See commit
- */
+
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -64,7 +59,6 @@ public class CalendarController implements Initializable {
         dateFocus = ZonedDateTime.now();
         today = ZonedDateTime.now();
 
-        // Set user info from Session
         if (Session.loggedInUserEmail != null) {
             userNameLabel.setText(Session.loggedInUserEmail.split("@")[0]);
             String initials = Session.loggedInUserEmail.substring(0, 2).toUpperCase();
@@ -224,7 +218,6 @@ public class CalendarController implements Initializable {
     }
 
     private Map<Integer, List<Task>> getTasksForMonth(ZonedDateTime dateFocus) {
-        // Check if user is logged in and client is available
         if(Session.loggedInUserEmail == null || Session.client == null) {
             System.err.println("Warning: User not logged in or client not initialized");
             return new HashMap<>();
@@ -247,9 +240,6 @@ public class CalendarController implements Initializable {
         }
     }
 
-    /**
-     * Refresh the calendar display (useful after adding/editing tasks)
-     */
     public void refresh() {
         calendar.getChildren().clear();
         drawCalendar();
