@@ -10,11 +10,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * @author Kacper Bohaczyk
- * Die Klasse managed der Speicher und erstellen der Tasks, sowie das laden und filtern nach Datum
- */
-
 public class TaskManager {
 
     private List<User> userWithTasks = new ArrayList<>();
