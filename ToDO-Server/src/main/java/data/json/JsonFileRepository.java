@@ -1,6 +1,8 @@
 package data.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import data.models.User;
+import server.ServerConfig;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -21,6 +23,7 @@ public abstract class JsonFileRepository<T> implements SaveLoad<T> {
         this.file.getParentFile().mkdirs();
     }
 
+
     @Override
     public List<T> loadAll() throws IOException {
         if (!file.exists() || file.length() == 0) {
@@ -33,13 +36,37 @@ public abstract class JsonFileRepository<T> implements SaveLoad<T> {
 
     @Override
     public void saveAll(List<T> data) throws IOException {
-        String json = mapper
-                .writerWithDefaultPrettyPrinter()
-                .writeValueAsString(data);
 
-        try (FileWriter fw = new FileWriter(file)) {
-            fw.write(json);
-            fw.flush();
+        if(data instanceof User ){
+            String json = mapper.writerWithView(User.TaskFileView.class)
+                    .withDefaultPrettyPrinter()
+                    .writeValueAsString(data);
+
+            try (FileWriter fw = new FileWriter(file)) {
+                fw.write(json);
+                fw.flush();
+                System.out.println("File written: " + file.length() + " bytes");
+            }
+        }else{
+            String json = mapper
+                    .writerWithDefaultPrettyPrinter()
+                    .writeValueAsString(data);
+
+            try (FileWriter fw = new FileWriter(file)) {
+                fw.write(json);
+                fw.flush();
+            }
         }
+    }
+
+    public List<User> checkIfUserExists() throws IOException {
+        List<User> userList = new ArrayList<>();
+
+        if (file.exists() && file.length() > 0) {
+            User[] userArray = mapper.readValue(file, User[].class);
+            userList = new ArrayList<>(Arrays.asList(userArray));
+        }
+
+        return userList;
     }
 }

@@ -22,7 +22,7 @@ public class LoginController {
     @FXML
     private Label errorLabel;
 
-    private static final boolean DEBUG_MODE = false;
+    private static final boolean DEBUG_MODE = true;
     private static final String DEBUG_EMAIL = "test";
     private static final String DEBUG_PASSWORD = "test";
 

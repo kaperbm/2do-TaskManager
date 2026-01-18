@@ -1,6 +1,8 @@
 [ {
   "id" : null,
+  "name" : null,
   "email" : "test",
+  "password" : null,
   "taskList" : [ {
     "id" : "7da4e473-c14e-40b8-80da-022bcbe67feb",
     "date" : "2025-12-22",
@@ -47,6 +49,38 @@
     "title" : "tes2",
     "description" : "",
     "dateTbd" : "2026-01-07",
+    "completed" : false,
+    "tbd" : false
+  }, {
+    "id" : "3c565ac8-dee7-4bad-a6d7-6d453aa37898",
+    "date" : "2026-01-18",
+    "title" : "test",
+    "description" : "",
+    "dateTbd" : null,
+    "completed" : false,
+    "tbd" : true
+  }, {
+    "id" : "b912aa03-19e1-4fe5-ac61-73abed203e35",
+    "date" : "2026-01-18",
+    "title" : "xyz",
+    "description" : "",
+    "dateTbd" : "2026-01-15",
+    "completed" : false,
+    "tbd" : false
+  }, {
+    "id" : "f088f393-84e8-4156-9c64-d44f39e71129",
+    "date" : "2026-01-18",
+    "title" : "test555",
+    "description" : "",
+    "dateTbd" : "2026-01-19",
+    "completed" : false,
+    "tbd" : true
+  }, {
+    "id" : "57555029-c745-45ae-99a8-4ddcfa99759f",
+    "date" : "2026-01-18",
+    "title" : "test",
+    "description" : "",
+    "dateTbd" : null,
     "completed" : false,
     "tbd" : false
   } ]
