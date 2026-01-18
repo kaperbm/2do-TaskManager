@@ -2,10 +2,6 @@ package data.manager;
 
 import data.models.User;
 import data.json.UserRepository;
-import server.ServerConfig;
-
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
@@ -27,7 +23,7 @@ public class UserManager {
     }
 
     public boolean createNewUser(String name, String email, String password) throws IOException {
-        users = repo.loadAll(); // refresh state
+        users = repo.loadAll();
 
         if (users.stream().anyMatch(u -> u.getEmail().equals(email))) {
             return false;

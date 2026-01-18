@@ -64,9 +64,10 @@ public class DashboardController {
             avatar = email.substring(0, 2).toUpperCase();
         }
 
+
         userAvatarLabel.setText(avatar);
-        userNameLabel.setText("Admin User");
-        welcomeLabel.setText("Willkommen zurück, Admin User!");
+        userNameLabel.setText(Session.loggedInUserEmail.split("@")[0]);
+        welcomeLabel.setText("Willkommen zurück, " +  Session.loggedInUserEmail.split("@")[0] +"!");
 
         openCountLabel.setText("0");
         inProgressCountLabel.setText("0");

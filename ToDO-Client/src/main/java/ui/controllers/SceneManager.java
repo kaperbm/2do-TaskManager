@@ -34,6 +34,7 @@ public class SceneManager {
 
 
             scene.getRoot().getStyleClass().remove("dark");
+
             if (client.Session.darkMode) {
                 scene.getRoot().getStyleClass().add("dark");
             }

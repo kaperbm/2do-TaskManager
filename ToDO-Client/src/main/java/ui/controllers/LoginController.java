@@ -3,7 +3,6 @@ package ui.controllers;
 import client.NetworkClient;
 import client.Session;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -22,7 +21,7 @@ public class LoginController {
     @FXML
     private Label errorLabel;
 
-    private static final boolean DEBUG_MODE = true;
+    private static final boolean DEBUG_MODE = false;
     private static final String DEBUG_EMAIL = "test";
     private static final String DEBUG_PASSWORD = "test";
 

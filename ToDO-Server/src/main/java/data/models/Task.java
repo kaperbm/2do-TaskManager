@@ -34,6 +34,28 @@ public class Task {
         this.tbd = false;
     }
 
+    public static Task withDeadline(String date, String title, String dateTbd) {
+        Task task = new Task();
+        task.id = UUID.randomUUID().toString();
+        task.date = LocalDate.parse(date);
+        task.title = title;
+        task.description = "";
+        task.dateTbd = (dateTbd != null && !dateTbd.isBlank()) ? LocalDate.parse(dateTbd) : null;
+        task.completed = false;
+        task.tbd = false;
+        return task;
+    }
+
+    public Task(String date, String title, String description, String dateTbd) {
+        this.id = UUID.randomUUID().toString();
+        this.date = LocalDate.parse(date);
+        this.title = title;
+        this.description = description;
+        this.dateTbd = (dateTbd != null && !dateTbd.isBlank()) ? LocalDate.parse(dateTbd) : null;
+        this.completed = false;
+        this.tbd = false;
+    }
+
     public String getId() { return id; }
     public String getDate() { return date.toString(); }
     public String getTitle() { return title; }

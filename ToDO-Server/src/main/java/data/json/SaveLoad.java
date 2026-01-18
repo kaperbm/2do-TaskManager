@@ -1,7 +1,5 @@
 package data.json;
 
-import data.models.User;
-
 import java.io.IOException;
 import java.util.List;
 

@@ -21,7 +21,7 @@ public class SettingsController {
 
         String avatar = email.length() >= 2 ? email.substring(0, 2).toUpperCase() : "US";
         userAvatarLabel.setText(avatar);
-        userNameLabel.setText("Admin User");
+        userNameLabel.setText(Session.loggedInUserEmail.split("@")[0]);
         darkModeCheckBox.setSelected(Session.darkMode);
     }
 
