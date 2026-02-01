@@ -29,6 +29,10 @@ public class ClientController extends Thread {
         this.out = out;
     }
 
+    /**
+     * Thread-Hauptmethode - Verarbeitet Client-Anfragen in einer Schleife.
+     * Sendet Verbindungsbestätigung und liest kontinuierlich Anfragen vom Client.
+     */
     @Override
     public void run() {
         try {
@@ -44,6 +48,13 @@ public class ClientController extends Thread {
             System.out.println("Client getrennt.");
         }
     }
+
+
+    /**
+     * Verarbeitet eine einzelne Client-Anfrage und sendet passende Antwort.
+     * Unterstützt Befehle: LOGIN, CREATE_ACCOUNT, ADD_TASK, GET_TASKS, GET_TASKCOUNT, SAVE_TASKS, CHANGE_PASSWORD
+     * @param req Anfrage-String vom Client
+     */
 
     private void handleRequest(String req) {
         try {

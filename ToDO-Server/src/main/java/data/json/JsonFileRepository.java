@@ -31,6 +31,11 @@ public abstract class JsonFileRepository<T> implements SaveLoad<T> {
     }
 
 
+    /**
+     *  Methode zum laden aller gespeicherten Objekte aus der JSON-Datei.
+     * @return Gibt die Objekte als Liste zurück
+     * @throws IOException
+     */
     @Override
     public List<T> loadAll() throws IOException {
         if (!file.exists() || file.length() == 0) {
@@ -41,6 +46,12 @@ public abstract class JsonFileRepository<T> implements SaveLoad<T> {
         return new ArrayList<>(Arrays.asList(data));
     }
 
+
+    /**
+     * Speichert eine Liste von Objekten in eine JSON-Datei.
+     * @param data Die Liste an Objekten
+     * @throws IOException
+     */
     @Override
     public void saveAll(List<T> data) throws IOException {
 
@@ -66,6 +77,12 @@ public abstract class JsonFileRepository<T> implements SaveLoad<T> {
         }
     }
 
+
+    /**
+     * Prüft, ob bereits Benutzer in der JSON-Datei existieren,
+     * @return Falls vorhanden gibt sie die Liste an Usern, ansonsten gibt sie eine leere liste
+     * @throws IOException
+     */
     public List<User> checkIfUserExists() throws IOException {
         List<User> userList = new ArrayList<>();
 
