@@ -3,6 +3,13 @@ package client;
 import java.io.*;
 import java.net.Socket;
 
+/**
+ * @version 1.0
+ * @date 01-02-2026
+ * Verwaltet die Netzwerkkommunikation mit dem Server
+ * über eine persistente Socket-Verbindung.
+ */
+
 public class NetworkClient {
 
     private Socket socket;

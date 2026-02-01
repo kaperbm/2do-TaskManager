@@ -2,6 +2,14 @@ package data.models;
 import java.util.UUID;
 import java.time.LocalDate;
 
+/**
+ * @version 1.0
+ * @date 01-02-2026
+ * Repräsentiert eine Aufgabe mit Erstellungsdatum, optionaler Deadline und Status.
+ */
+
+
+
 public class Task {
     private String id;
     private LocalDate date;

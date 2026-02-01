@@ -8,7 +8,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import ui.SceneManager;
+import ui.controllers.SceneManager;
+
+/**
+ * @version 1.0
+ * @date 01-02-2026
+ * Steuert den Login, sowie die Anmeldung beim Server.
+ */
+
 
 public class LoginController {
 

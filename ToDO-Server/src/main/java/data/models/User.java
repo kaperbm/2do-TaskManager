@@ -5,6 +5,13 @@ import com.fasterxml.jackson.annotation.JsonView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @version 1.0
+ * @date 01-02-2026
+ * Repräsentiert einen Benutzer mit Login-Daten und zugehörigen Tasks.
+ */
+
+
 public class User {
     public static class UserFileView {}
     public static class TaskFileView {}

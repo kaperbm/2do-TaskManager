@@ -7,7 +7,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import ui.SceneManager;
+import ui.controllers.SceneManager;
+
+/**
+ * @version 1.0
+ * @date 01-02-2026
+ * Steuert die Registrierung neuer Benutzer und die Kommunikation mit dem Server.
+ */
+
 
 public class CreateAccountController {
 

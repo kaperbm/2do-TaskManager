@@ -3,6 +3,13 @@ package server;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * @version 1.0
+ * @date 01-02-2026
+ * Die Klasse startet den Server auf dem konfigurierten Port und wartet auf Client-Verbindungen.
+ * Für jeden verbundenen Client wird ein eigener Thread zur Verarbeitung gestartet.
+ */
+
 public class ServerMain {
 
     public static void main(String[] args) {

@@ -5,6 +5,13 @@ import data.json.UserRepository;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * @version 1.0
+ * @date 01-02-2026
+ * Verwaltet Benutzeranmeldung, Registrierung und Passwortänderung.
+ */
+
+
 public class UserManager {
 
     private final UserRepository repo = new UserRepository();

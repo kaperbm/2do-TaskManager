@@ -15,7 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import ui.SceneManager;
+import ui.controllers.SceneManager;
 import ui.models.Task;
 import client.Session;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,6 +25,16 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.*;
+
+/**
+ * @version 1.0
+ * @date 01-02-2026
+ * Steuert die Kalenderansicht der Anwendung.
+ * Zeigt einen Monatskalender an, lädt die Aufgaben des eingeloggten Benutzers
+ * vom Server und ordnet sie den jeweiligen Tagen zu.
+ * Ermöglicht das Wechseln zwischen Monaten sowie Navigation zu anderen Views.
+ */
+
 
 public class CalendarController implements Initializable {
 

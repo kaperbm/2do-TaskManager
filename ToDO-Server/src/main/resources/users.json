@@ -2,25 +2,36 @@
   "id" : "d46cfc87-a441-415a-ae99-58b6406f1658",
   "name" : "test",
   "email" : "test",
-  "password" : "test"
+  "password" : "test",
+  "taskList" : null
 }, {
   "id" : "ca272674-e98f-49be-860b-07020b61bcc2",
   "name" : "test1",
   "email" : "test1",
-  "password" : "test"
+  "password" : "test",
+  "taskList" : null
 }, {
   "id" : "c07eaca7-6d21-40cd-9143-fb4367547da3",
   "name" : "niklas",
   "email" : "niklas@email",
-  "password" : "1234"
+  "password" : "1234",
+  "taskList" : null
 }, {
   "id" : "77059802-bb38-46f4-b53d-58d7eab6a6c0",
   "name" : "Manu",
   "email" : "Manu@email",
-  "password" : "1234"
+  "password" : "1234",
+  "taskList" : null
 }, {
   "id" : "f1a08c92-9045-48a5-8252-509607c5c1d9",
   "name" : "stefan",
   "email" : "stefan",
-  "password" : "1234"
+  "password" : "1234",
+  "taskList" : null
+}, {
+  "id" : "091d260f-1716-464a-baf4-5521622fe31c",
+  "name" : "freakbob",
+  "email" : "freakbob",
+  "password" : "freakbob",
+  "taskList" : [ ]
 } ]

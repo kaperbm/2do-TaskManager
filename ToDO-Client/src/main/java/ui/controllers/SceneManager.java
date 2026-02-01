@@ -1,9 +1,14 @@
-package ui;
+package ui.controllers;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * @version 1.0
+ * @date 01-02-2026
+ * Wechselt die aktuelle JavaFX-Szene und übernimmt Fenster- und Style-Einstellungen.
+ */
 public class SceneManager {
 
     public static void switchTo(Stage stage, String fxmlPath) {

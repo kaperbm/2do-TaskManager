@@ -6,7 +6,14 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
-import ui.SceneManager;
+import ui.controllers.SceneManager;
+
+/**
+ * @version 1.0
+ * @date 01-02-2026
+ * Steuert die Einstellungen-Ansicht inklusive Benutzeranzeige,
+ * Passwortänderung, Dark-Mode und Navigation.
+ */
 
 public class SettingsController {
 

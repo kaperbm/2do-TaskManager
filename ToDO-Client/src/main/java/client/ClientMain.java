@@ -5,6 +5,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * @version 1.0
+ * @date 01-02-2026
+ * Startet die JavaFX-Anwendung und lädt die Login-Oberfläche.
+ */
+
 public class ClientMain extends Application {
 
     @Override

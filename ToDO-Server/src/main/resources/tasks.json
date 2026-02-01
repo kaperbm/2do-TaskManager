@@ -84,4 +84,34 @@
     "completed" : false,
     "tbd" : false
   } ]
+}, {
+  "id" : null,
+  "name" : null,
+  "email" : "freakbob",
+  "password" : null,
+  "taskList" : [ {
+    "id" : "1f862286-1075-4c13-9d72-da9d59b3182f",
+    "date" : "2026-02-01",
+    "title" : "Einkaufen",
+    "description" : "",
+    "dateTbd" : "2026-02-02",
+    "completed" : false,
+    "tbd" : true
+  }, {
+    "id" : "2c523055-7756-4b1e-83c1-72296c7de2d2",
+    "date" : "2026-02-01",
+    "title" : "Kochen",
+    "description" : "",
+    "dateTbd" : null,
+    "completed" : false,
+    "tbd" : false
+  }, {
+    "id" : "c65e7965-17cc-4aac-a0f8-cdc2f2bd304f",
+    "date" : "2026-02-01",
+    "title" : "Einkaufne",
+    "description" : "",
+    "dateTbd" : "2026-02-11",
+    "completed" : false,
+    "tbd" : false
+  } ]
 } ]

@@ -10,6 +10,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @version 1.0
+ * @date 01-02-2026
+ * Verwaltet Aufgaben eines Benutzers inklusive Laden, Speichern, Filtern und Zählung.
+ */
+
+
 public class TaskManager{
 
     private List<User> userWithTasks = new ArrayList<>();

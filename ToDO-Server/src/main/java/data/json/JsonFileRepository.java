@@ -11,6 +11,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @version 1.0
+ * @date 01-02-2026
+ * Abstraktes Repository zum Laden und Speichern von Daten in einer JSON-Datei.
+ */
+
+
 public abstract class JsonFileRepository<T> implements SaveLoad<T> {
 
     protected final ObjectMapper mapper = new ObjectMapper();

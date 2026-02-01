@@ -11,7 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import ui.SceneManager;
+import ui.controllers.SceneManager;
 import ui.models.Task;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -24,6 +24,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @version 1.0
+ * @date 01-02-2026
+ * Steuert das Dashboard, lädt Aufgaben vom Server, zeigt sie an
+ * und ermöglicht Bearbeitung, Sortierung und Speicherung.
+ */
 
 public class DashboardController {
 

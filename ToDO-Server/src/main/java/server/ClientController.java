@@ -4,6 +4,14 @@ import data.manager.UserManager;
 import java.io.*;
 import java.net.Socket;
 
+/**
+ * @version 1.0
+ * @date 01-02-2026
+ * Verarbeitet die Kommunikation mit einem einzelnen Client.
+ * Liest Client-Anfragen, wertet Befehle aus und sendet passende Antworten zurück.
+ */
+
+
 public class ClientController extends Thread {
 
     private final BufferedReader in;

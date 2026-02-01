@@ -2,6 +2,13 @@ package ui.models;
 import java.time.LocalDate;
 import java.util.UUID;
 
+/**
+ * @version 1.0
+ * @date 01-02-2026
+ * UI-Modell zur Darstellung und Bearbeitung einer Aufgabe.
+ */
+
+
 public class Task {
     private String id;
     private LocalDate date;
