@@ -30,25 +30,6 @@ public class Task {
         this.tbd = tbd;
     }
 
-    public Task(String date, String title, String dateTbd) {
-        this.id = UUID.randomUUID().toString();
-        this.date = LocalDate.parse(date);
-        this.title = title;
-        this.description = "";
-        this.dateTbd = LocalDate.parse(dateTbd);
-        this.completed = false;
-        this.tbd = false;
-    }
-
-    public Task(String date, String title,String dateTbd, String description ) {
-        this.id = UUID.randomUUID().toString();
-        this.date = LocalDate.parse(date);
-        this.title = title;
-        this.description = description;
-        this.dateTbd = (dateTbd != null && !dateTbd.isBlank()) ? LocalDate.parse(dateTbd) : null;
-        this.completed = false;
-        this.tbd = false;
-    }
 
     public String getId() { return id; }
     public String getDate() { return date.toString(); }
