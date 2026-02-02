@@ -32,6 +32,10 @@ public class LoginController {
     private static final String DEBUG_EMAIL = "test";
     private static final String DEBUG_PASSWORD = "test";
 
+    /**
+     * Initialisiert den Login-Controller beim Laden der View.
+     * Im Debug-Modus werden automatisch Test-Credentials eingetragen und der Login ausgeführt.
+     */
     @FXML
     private void initialize() {
         if (DEBUG_MODE) {
@@ -41,6 +45,11 @@ public class LoginController {
         }
     }
 
+    /**
+     * Verarbeitet den Login-Versuch des Benutzers.
+     * Stellt bei Bedarf eine Verbindung zum Server her, sendet die Login-Daten
+     * und wechselt bei Erfolg zur Dashboard-Ansicht oder zeigt eine Fehlermeldung an.
+     */
     @FXML
     private void onLoginClick() {
         try {
@@ -69,7 +78,9 @@ public class LoginController {
         }
 
     }
-
+    /**
+     * Wechselt zur Registrierungs-Ansicht (Create Account).
+     */
     @FXML
     public void onCreateAccountClick() {
         Stage stage = (Stage) emailField.getScene().getWindow();

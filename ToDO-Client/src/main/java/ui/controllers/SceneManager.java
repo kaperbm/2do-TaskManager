@@ -11,6 +11,11 @@ import javafx.stage.Stage;
  */
 public class SceneManager {
 
+    /**
+     * Wechselt die Szene in der angegebenen Stage zu einer neuen FXML-Datei.
+     * @param stage Die Stage, deren Szene gewechselt werden soll
+     * @param fxmlPath Pfad zur FXML-Datei (relativ zu den Ressourcen)
+     */
     public static void switchTo(Stage stage, String fxmlPath) {
         try {
             boolean wasFullScreen = stage.isFullScreen();

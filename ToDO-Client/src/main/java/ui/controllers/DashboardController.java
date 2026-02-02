@@ -58,7 +58,11 @@ public class DashboardController {
     private List<Task> taskList;
     private List<Task> tasksToDelete = new ArrayList<>();
 
-
+    /**
+     * Initialisiert das Dashboard beim Laden der View.
+     * Setzt Benutzer-Avatar, Begrüßungstext, lädt Aufgabenzähler und zeigt offene Aufgaben an.
+     * @throws IOException bei Kommunikationsfehlern mit dem Server
+     */
     @FXML
     public void initialize() throws IOException {
         String email = Session.loggedInUserEmail != null
@@ -86,21 +90,36 @@ public class DashboardController {
         onOpenClicked();
 
     }
+
+
+    /**
+     * Meldet den Benutzer ab und wechselt zur Login-Ansicht.
+     */
     @FXML
     private void onLogoutClick() {
         Stage stage = (Stage) userAvatarLabel.getScene().getWindow();
         SceneManager.switchTo(stage, "/ui/views/login.fxml");
     }
+    /**
+     * Öffnet die Kalender-Ansicht.
+     */
     @FXML
     private void openCalendar() {
         Stage stage = (Stage) userAvatarLabel.getScene().getWindow();
         SceneManager.switchTo(stage, "/ui/views/calendar.fxml");
     }
+    /**
+     * Öffnet die Einstellungs-Ansicht.
+     */
     @FXML
     private void openSettings() {
         Stage stage = (Stage) userAvatarLabel.getScene().getWindow();
         SceneManager.switchTo(stage, "/ui/views/settings.fxml");
     }
+    /**
+     * Öffnet einen Dialog zum Hinzufügen einer neuen Aufgabe.
+     * Sendet die neue Aufgabe an den Server und aktualisiert die Anzeige.
+     */
     @FXML
     public void onAddEventClick() {
         try {
@@ -160,6 +179,10 @@ public class DashboardController {
         }
     }
 
+    /**
+     * Zeigt alle offenen Aufgaben (weder TBD noch erledigt) an.
+     * @throws IOException bei Kommunikationsfehlern mit dem Server
+     */
     @FXML
     public void onOpenClicked() throws IOException {
         taskDisplayVBox.getChildren().clear();
@@ -170,7 +193,10 @@ public class DashboardController {
         }
         tasksInfoLabel.setText("Offene Aufgaben");
     }
-
+    /**
+     * Zeigt alle Aufgaben in Bearbeitung (TBD) an.
+     * @throws IOException bei Kommunikationsfehlern mit dem Server
+     */
     @FXML
     public void onInProgressClicked() throws IOException {
         taskDisplayVBox.getChildren().clear();
@@ -181,7 +207,10 @@ public class DashboardController {
         }
         tasksInfoLabel.setText("Aufgaben in Bearbeitung");
     }
-
+    /**
+     * Zeigt alle erledigten Aufgaben an.
+     * @throws IOException bei Kommunikationsfehlern mit dem Server
+     */
     @FXML
     public void onDoneClicked() throws IOException {
         taskDisplayVBox.getChildren().clear();
@@ -192,7 +221,11 @@ public class DashboardController {
         }
         tasksInfoLabel.setText("Abgeschlossene Aufgaben");
     }
-
+    /**
+     * Lädt gefilterte Aufgaben vom Server basierend auf dem Status.
+     * @param i Filter: 1=offen, 2=in Bearbeitung (TBD), 3=erledigt
+     * @throws IOException bei Kommunikationsfehlern mit dem Server
+     */
     private void getTasksFromServer(int i) throws IOException {
         String response = Session.client.send("GET_TASKS " + Session.loggedInUserEmail + " " + i);
         String allTasksJson = Session.client.send("GET_TASKS " + Session.loggedInUserEmail);
@@ -210,7 +243,12 @@ public class DashboardController {
         taskList = mapper.readValue(allTasksJson, new TypeReference<>() {});
         currentTaskList = mapper.readValue(response, new TypeReference<>() {});
     }
-
+    /**
+     * Erstellt eine visuelle Zeile für eine Aufgabe mit allen Bearbeitungselementen.
+     * Enthält Titel, Beschreibung, TBD/Erledigt-Checkboxen, Daten und Löschen-Button.
+     * @param task Die anzuzeigende Aufgabe
+     * @return HBox mit allen UI-Elementen für die Aufgabe
+     */
     private HBox createTaskRow(Task task) {
         HBox row = new HBox(15);
         row.setAlignment(Pos.CENTER_LEFT);
@@ -300,7 +338,12 @@ public class DashboardController {
 
         return row;
     }
-
+    /**
+     * Markiert eine Aufgabe zum Löschen oder hebt die Markierung auf.
+     * Aktualisiert die visuelle Darstellung (roter Hintergrund für zu löschende Aufgaben).
+     * @param task Die zu markierende/demarkierende Aufgabe
+     * @throws IOException bei Anzeige-Aktualisierungsfehlern
+     */
     private void deleteTask(Task task) throws IOException {
         if (tasksToDelete.contains(task)) {
             tasksToDelete.remove(task);
@@ -319,7 +362,10 @@ public class DashboardController {
             taskDisplayVBox.getChildren().add(taskRow);
         }
     }
-
+    /**
+     * Aktualisiert die Dashboard-Statistiken (offene, TBD, erledigte Aufgaben).
+     * Lädt die aktuellen Zählerstände vom Server und aktualisiert die Labels.
+     */
     private void refreshDashboard() {
         try {
 
@@ -340,7 +386,11 @@ public class DashboardController {
         }
     }
 
-
+    /**
+     * Speichert alle Änderungen (Bearbeitungen und Löschungen) auf dem Server.
+     * Entfernt markierte Aufgaben, synchronisiert Änderungen und aktualisiert die Anzeige.
+     * @throws IOException bei Kommunikationsfehlern mit dem Server
+     */
     @FXML
     public void onSaveClick() throws IOException {
 
@@ -390,7 +440,11 @@ public class DashboardController {
             onDoneClicked();
         }
     }
-
+    /**
+     * Sortiert die aktuelle Aufgabenliste alphabetisch nach Titel.
+     * Wechselt bei jedem Klick zwischen aufsteigender (A-Z) und absteigender (Z-A) Sortierung.
+     * @throws IOException bei Anzeige-Aktualisierungsfehlern
+     */
     @FXML
     public void onAlphabeticalClicked() throws IOException {
         if (currentTaskList != null && !currentTaskList.isEmpty()) {
@@ -431,7 +485,11 @@ public class DashboardController {
             tasksInfoLabel.setText(currentLabel + " (alphabetisch sortiert " + sortOrder + ")");
         }
     }
-
+    /**
+     * Sortiert die aktuelle Aufgabenliste nach Erstellungsdatum.
+     * Wechselt bei jedem Klick zwischen aufsteigender und absteigender Sortierung.
+     * @throws IOException bei Anzeige-Aktualisierungsfehlern
+     */
     @FXML
     public void onDateClicked() throws IOException {
         if (currentTaskList != null && !currentTaskList.isEmpty()) {
@@ -458,7 +516,12 @@ public class DashboardController {
             tasksInfoLabel.setText(currentLabel + " (nach Erstelldatum sortiert: " + sortOrder + ")");
         }
     }
-
+    /**
+     * Sortiert die aktuelle Aufgabenliste nach Fälligkeitsdatum (DateTbd).
+     * Wechselt bei jedem Klick zwischen aufsteigender und absteigender Sortierung.
+     * Aufgaben ohne Fälligkeitsdatum werden ans Ende sortiert.
+     * @throws IOException bei Anzeige-Aktualisierungsfehlern
+     */
     @FXML
     public void onDateTbdClicked() throws IOException {
         if (currentTaskList != null && !currentTaskList.isEmpty()) {
@@ -499,7 +562,10 @@ public class DashboardController {
             tasksInfoLabel.setText(currentLabel + " (nach Fälligkeit sortiert: " + sortOrder + ")");
         }
     }
-
+    /**
+     * Setzt alle Sortierungen zurück und zeigt wieder die offenen Aufgaben an.
+     * @throws IOException bei Kommunikationsfehlern mit dem Server
+     */
     @FXML
     public void onDeleteHeaderClicked() throws IOException {
         isAlphabeticalAscending = true;

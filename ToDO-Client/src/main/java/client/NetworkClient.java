@@ -25,6 +25,11 @@ public class NetworkClient {
         System.out.println("Server Greeting: " + greeting);
     }
 
+    /**
+     * Sendet einen Befehl an den Server und wartet auf die Antwort.
+     * @param command Befehl-String, der an den Server gesendet wird
+     * @return Antwort-String vom Server
+     */
     public synchronized String send(String command) throws IOException {
         System.out.println("Sende an Server: '" + command + "'");
         out.println(command);

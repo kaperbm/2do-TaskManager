@@ -30,6 +30,11 @@ public class CreateAccountController {
     @FXML
     private Label errorLabel;
 
+    /**
+     * Verarbeitet die Registrierung eines neuen Benutzers.
+     * Sendet die Benutzerdaten an den Server und zeigt entsprechende Erfolgs- oder Fehlermeldungen an.
+     * Stellt bei Bedarf eine neue Verbindung zum Server her.
+     */
     @FXML
     private void createNewAccountClick() {
         try {
@@ -54,7 +59,10 @@ public class CreateAccountController {
             }
 
     }
-
+    /**
+     * Kehrt zur Login-Ansicht zurück.
+     * Wechselt die Szene ohne Änderung der Session-Daten.
+     */
     @FXML
     public void onBackToLoginClick() {
         Stage stage = (Stage) emailField.getScene().getWindow();

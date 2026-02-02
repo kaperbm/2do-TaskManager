@@ -21,6 +21,11 @@ public class SettingsController {
     @FXML private Label userNameLabel;
     @FXML private CheckBox darkModeCheckBox;
 
+
+    /**
+     * Initialisiert die Einstellungs-Ansicht beim Laden.
+     * Setzt Benutzer-Avatar, Benutzername und Dark-Mode-Status basierend auf der Session.
+     */
     @FXML
     public void initialize() {
 
@@ -41,6 +46,10 @@ public class SettingsController {
     @FXML
     private Label passwordStatusLabel;
 
+    /**
+     * Verarbeitet die Passwortänderung des eingeloggten Benutzers.
+     * Validiert die Eingaben, sendet die Anfrage an den Server und zeigt Statusmeldungen an.
+     */
     @FXML
     private void onChangePasswordClick() {
         try {
@@ -70,7 +79,10 @@ public class SettingsController {
     }
 
 
-
+    /**
+     * Aktiviert oder deaktiviert den Dark-Mode.
+     * Aktualisiert die Session und wendet das entsprechende CSS-Theme auf die Szene an.
+     */
     @FXML
     private void onToggleDarkMode() {
         Session.darkMode = darkModeCheckBox.isSelected();
@@ -80,19 +92,25 @@ public class SettingsController {
             stage.getScene().getRoot().getStyleClass().add("dark");
         }
     }
-
+    /**
+     * Öffnet die Dashboard-Ansicht.
+     */
     @FXML
     private void openDashboard() {
         Stage stage = (Stage) darkModeCheckBox.getScene().getWindow();
         SceneManager.switchTo(stage, "/ui/views/dashboard.fxml");
     }
-
+    /**
+     * Öffnet die Kalender-Ansicht.
+     */
     @FXML
     private void openCalendar() {
         Stage stage = (Stage) darkModeCheckBox.getScene().getWindow();
         SceneManager.switchTo(stage, "/ui/views/calendar.fxml");
     }
-
+    /**
+     * Meldet den Benutzer ab und kehrt zur Login-Ansicht zurück.
+     */
     @FXML
     private void onLogoutClick() {
         Stage stage = (Stage) darkModeCheckBox.getScene().getWindow();

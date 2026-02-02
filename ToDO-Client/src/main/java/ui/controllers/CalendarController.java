@@ -64,6 +64,11 @@ public class CalendarController implements Initializable {
     @FXML
     private HBox dayHeaderBox;
 
+    /**
+     * Setzt das aktuelle Datum, zeigt Benutzername und Avatar an und zeichnet den Kalender.
+     * @param url PATH des FXML-Dokuments
+     * @param resourceBundle Ressourcen-Bundle für Lokalisierung
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dateFocus = ZonedDateTime.now();
@@ -78,32 +83,46 @@ public class CalendarController implements Initializable {
         drawCalendar();
     }
 
+    /**
+     * Wechselt zum vorherigen Monat und aktualisiert die Kalenderansicht.
+     * @param event ActionEvent vom Button-Klick
+     */
     @FXML
     void backOneMonth(ActionEvent event) {
         dateFocus = dateFocus.minusMonths(1);
         calendar.getChildren().clear();
         drawCalendar();
     }
-
+    /**
+     * Wechselt zum nächsten Monat und aktualisiert die Kalenderansicht.
+     * @param event ActionEvent vom Button-Klick
+     */
     @FXML
     void forwardOneMonth(ActionEvent event) {
         dateFocus = dateFocus.plusMonths(1);
         calendar.getChildren().clear();
         drawCalendar();
     }
-
+    /**
+     * Öffnet die Dashboard-Ansicht.
+     */
     @FXML
     private void openDashboard() {
         Stage stage = (Stage) year.getScene().getWindow();
         SceneManager.switchTo(stage, "/ui/views/dashboard.fxml");
     }
-
+    /**
+     * Öffnet die Einstellungs-Ansicht.
+     */
     @FXML
     private void openSettings() {
         Stage stage = (Stage) year.getScene().getWindow();
         SceneManager.switchTo(stage, "/ui/views/settings.fxml");
     }
-
+    /**
+     * Meldet den Benutzer ab und kehrt zur Login-Ansicht zurück.
+     * Löscht Session-Daten (E-Mail und Client-Verbindung).
+     */
     @FXML
     private void onLogoutClick() {
         Session.loggedInUserEmail = null;
@@ -111,7 +130,9 @@ public class CalendarController implements Initializable {
         Stage stage = (Stage) year.getScene().getWindow();
         SceneManager.switchTo(stage, "/ui/views/login.fxml");
     }
-
+    /**
+     * Zeichnet den Monatskalender mit allen Tagen und zugehörigen Aufgaben.
+     */
     private void drawCalendar(){
         year.setText(String.valueOf(dateFocus.getYear()));
         month.setText(String.valueOf(dateFocus.getMonth()));
@@ -162,6 +183,14 @@ public class CalendarController implements Initializable {
         }
     }
 
+
+    /**
+     * Erstellt die visuelle Darstellung der Aufgaben in einen Kalendertag.
+     * @param tasks Liste der anzuzeigenden Aufgaben
+     * @param rectangleHeight Höhe der Kalenderzelle
+     * @param rectangleWidth Breite der Kalenderzelle
+     * @param stackPane Container für die Task-Anzeige
+     */
     private void createTaskDisplay(List<Task> tasks, double rectangleHeight, double rectangleWidth, StackPane stackPane) {
         VBox taskBox = new VBox();
         taskBox.setSpacing(2);
@@ -204,6 +233,14 @@ public class CalendarController implements Initializable {
         stackPane.getChildren().add(taskBox);
     }
 
+
+    /**
+     * Erstellt eine Map, die Aufgaben nach Tagen eines bestimmten Monats gruppiert.
+     * @param tasks Liste aller Aufgaben
+     * @param year Jahr zum Filtern
+     * @param month Monat zum Filtern
+     * @return Map mit Tag (1-31) als Key und Liste von Aufgaben als Value
+     */
     private Map<Integer, List<Task>> createTaskMap(List<Task> tasks, int year, int month) {
         Map<Integer, List<Task>> taskMap = new HashMap<>();
 
@@ -227,6 +264,11 @@ public class CalendarController implements Initializable {
         return taskMap;
     }
 
+    /**
+     * Lädt alle Aufgaben des eingeloggten Benutzers vom Server für den angezeigten Monat.
+     * @param dateFocus Datum des aktuell angezeigten Monats
+     * @return Map mit Aufgaben gruppiert nach Tagen, leere Map bei Fehler
+     */
     private Map<Integer, List<Task>> getTasksForMonth(ZonedDateTime dateFocus) {
         if(Session.loggedInUserEmail == null || Session.client == null) {
             System.err.println("Warning: User not logged in or client not initialized");
@@ -250,6 +292,9 @@ public class CalendarController implements Initializable {
         }
     }
 
+    /**
+     * Aktualisiert die Kalenderansicht durch Neuladen aller Daten.
+     */
     public void refresh() {
         calendar.getChildren().clear();
         drawCalendar();
